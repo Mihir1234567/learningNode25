@@ -1,0 +1,54 @@
+App.js
+
+console.log("App.js is running");
+var user = require("./user");
+
+console.log(user);
+console.log(user.userName);
+console.log(user.userAge);
+user.userDetails(100);
+
+user.js
+
+console.log("User.js is running");
+var userName = "Mihir";
+var userAge = 21;
+const userDetails = (value) => {
+    console.log(`User Details Function called...${value}`);
+    console.log("")
+};
+module.exports={userName,userAge,userDetails}
+
+
+///////////////
+const express = require("express");
+const app = express();
+
+//test api
+app.get("/test", (req, res) => {
+  console.log("test api called");
+  res.send("hello world");
+});
+
+app.get("/user", (req, res) => {
+  console.log("user api called");
+  res.json({
+    name: "mihir",
+    age: 21,
+  });
+});
+
+app.get("/employee", (req, res) => {
+  console.log("employee api called");
+  res.json({
+    employees: [
+      { id: 1, name: "ram", age: 20 },
+      { id: 2, name: "hello", age: 25 },
+    ],
+  });
+});
+//server start
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log("it is running.................................");
+});
