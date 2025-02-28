@@ -11,7 +11,11 @@ const userSchema = new Schema({
     type: Number,
   },
   status: {
-    type:Boolean
-  }
+    type: Boolean,
+  },
+  roleId: {
+    type: Schema.Types.ObjectId,
+    ref: "roles",
+  },
 });
 module.exports = mongoose.model("users", userSchema);
