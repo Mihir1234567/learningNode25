@@ -5,4 +5,5 @@ routes.post("/role", roleController.addRole);
 routes.delete("/role/:id", roleController.deleteRole);
 routes.get("/role/:id", roleController.getRoleById);
 
+
 module.exports = routes;

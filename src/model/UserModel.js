@@ -17,5 +17,12 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "roles",
   },
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: {
+    type: String,
+  },
 });
 module.exports = mongoose.model("users", userSchema);

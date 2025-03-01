@@ -1,8 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors")
 //express object
 const app = express();
+app.use(cors())
 app.use(express.json()); //To Accept Data as Json
+
+
 
 // import role routes
 const roleRoutes = require("./src/routes/RoleRoutes");
