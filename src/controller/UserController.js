@@ -24,7 +24,9 @@ const login = async (req, res) => {
   const hashedPassword = req.body.password;
   const email = req.body.email;
 
-  const foundUserFromEmil = await userModel.findOne({ email: email });
+  const foundUserFromEmil = await userModel
+    .findOne({ email: email })
+    .populate("roleId");
 
   if (foundUserFromEmil != null) {
     const isMatch = bcrypt.compareSync(
