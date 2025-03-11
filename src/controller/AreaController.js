@@ -17,7 +17,7 @@ const addAreas = async (req, res) => {
 const getAreas = async (req, res) => {
   try {
     const getArea = await areaModel.find().populate("cityId stateId");
-    res.status(201).json({
+    res.status(200).json({
       message: "Area Fetched Successfully",
       data: getArea,
     });
@@ -32,7 +32,7 @@ const getAreasById = async (req, res) => {
     const getAreaById = await areaModel
       .findById(req.params.id)
       .populate("cityId stateId");
-    res.status(201).json({
+    res.status(200).json({
       message: "Area Fetched Successfully",
       data: getAreaById,
     });
@@ -47,12 +47,32 @@ const deleteAreasById = async (req, res) => {
     const deleteAreaById = await areaModel
       .findByIdAndDelete(req.params.id)
       .populate("cityId stateId");
-    res.status(201).json({
-      message: "Area Fetched Successfully",
+    res.status(200).json({
+      message: "Area Deleted Successfully",
       data: deleteAreaById,
     });
   } catch (error) {
     res.status(500).json({ error: error });
   }
 };
-module.exports = { addAreas, getAreas, getAreasById, deleteAreasById };
+//getAreaByCityId
+const getAreaByCityId = async (req, res) => {
+  try {
+    const getAreaByCityId = await areaModel
+      .find({ cityId: req.params.cityId })
+      .populate("cityId stateId");
+    res.status(200).json({
+      message: "Area Fetched Successfully",
+      data: getAreaByCityId,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+module.exports = {
+  addAreas,
+  getAreas,
+  getAreasById,
+  deleteAreasById,
+  getAreaByCityId,
+};

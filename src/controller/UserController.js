@@ -1,13 +1,20 @@
 const { json } = require("express");
 const userModel = require("../model/UserModel"); //import userModel
 const bcrypt = require("bcrypt"); //import bcrypt
+const mailUtil = require("../util/MailUtil");
 
 const signUp = async (req, res) => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+
     req.body.password = hashedPassword;
     const addedUser = await userModel.create(req.body);
+    await mailUtil.sendMail(
+      addedUser.email,
+      "Welcome To eAdvertisement",
+      "Again Welcome To eAdvertisement By Mihir "
+    );
     res.status(201).json({
       message: "New User Has Been Added",
       data: addedUser,

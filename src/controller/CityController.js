@@ -1,6 +1,6 @@
 const cityModel = require("../model/CityModel");
 
-//AddCity
+/* -------------------------------- //AddCity ------------------------------- */
 const addCity = async (req, res) => {
   try {
     const city = await cityModel.create(req.body);
@@ -13,7 +13,7 @@ const addCity = async (req, res) => {
   }
 };
 
-//GetCity
+/* -------------------------------- //GetCity ------------------------------- */
 const getCity = async (req, res) => {
   try {
     const citys = await cityModel.find().populate("stateId");
@@ -25,7 +25,7 @@ const getCity = async (req, res) => {
     res.json({ error: error });
   }
 };
-//GetCityById
+/* ------------------------------ //GetCityById ----------------------------- */
 const getCitysById = async (req, res) => {
   try {
     const cityById = await cityModel
@@ -39,14 +39,14 @@ const getCitysById = async (req, res) => {
     res.json({ error: error });
   }
 };
-//GetCityById
+/* ------------------------------ //GetCityById ----------------------------- */
 const deleteCitysById = async (req, res) => {
   try {
     deleteCityById = await cityModel
       .findByIdAndDelete(req.params.id)
       .populate("stateId");
     res.status(200).json({
-      message: "City Fetched Successfully",
+      message: "City Deleted Successfully",
       data: deleteCityById,
     });
   } catch (error) {
@@ -54,4 +54,24 @@ const deleteCitysById = async (req, res) => {
   }
 };
 
-module.exports = { addCity, getCity, getCitysById, deleteCitysById };
+/* --------------------------- //GetStateByCityId --------------------------- */
+const getCityByStateId = async (req, res) => {
+  try {
+    const citysByStateId = await cityModel
+      .find({ stateId: req.params.stateId })
+      .populate("stateId");
+    res.status(200).json({
+      message: "City Fetched Successfully",
+      data: citysByStateId,
+    });
+  } catch (error) {
+    res.json({ error: error });
+  }
+};
+module.exports = {
+  addCity,
+  getCity,
+  getCitysById,
+  getCityByStateId,
+  deleteCitysById,
+};

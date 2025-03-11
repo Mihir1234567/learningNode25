@@ -9,7 +9,7 @@ const addState = async (req, res) => {
       data: state,
     });
   } catch (error) {
-    res.status(500).json({ error });
+    res.json({ error: error });
   }
 };
 
@@ -21,7 +21,9 @@ const getStates = async (req, res) => {
       message: "States Fetched Successfully",
       data: getState,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.json({ error: error });
+  }
 };
 
 //deleteStateById
@@ -32,7 +34,9 @@ const deleteStatesById = async (req, res) => {
       message: "States Deleted Successfully",
       data: deleteStateById,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.json({ error: error });
+  }
 };
 //GetStateById
 const getStatesById = async (req, res) => {
@@ -42,7 +46,9 @@ const getStatesById = async (req, res) => {
       message: "States Fetched Successfully",
       data: getStateById,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.json({ error: error });
+  }
 };
 
 module.exports = { getStates, addState, getStatesById, deleteStatesById };

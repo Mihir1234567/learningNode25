@@ -4,5 +4,6 @@ const areaController = require("../controller/AreaController");
 routes.post("/addArea", areaController.addAreas);
 routes.get("/", areaController.getAreas);
 routes.get("/:id", areaController.getAreasById);
-routes.delete("/delete/:id", areaController.deleteAreasById);
+routes.get("/getAreaByCityId/:cityId", areaController.getAreaByCityId);
+routes.delete("/deleteArea/:id", areaController.deleteAreasById);
 module.exports = routes;
