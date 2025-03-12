@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const paymentSchema = new Schema({
-  Payment_Id: {
-    type: Number,
-    require: true,
-  },
   Client_Id: {
     type: Schema.Types.ObjectId,
     require: true,
@@ -21,7 +17,7 @@ const paymentSchema = new Schema({
     require: true,
   },
   Payment_Method: {
-    enum: [Cash, Check, Card, Upi],
+    enum: ["Cash", "Check", "Card", "Upi"],
     type: String,
     require: true,
   },

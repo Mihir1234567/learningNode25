@@ -13,7 +13,6 @@ const citySchema = new Schema(
       require: true,
       ref: "state",
     },
- 
   },
   { timestamps: true }
 );

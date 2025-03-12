@@ -46,5 +46,10 @@ const hordingSchema = new Schema({
     type: Number,
     require: true,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+    required: true,
+  },
 });
 module.exports = mongoose.model("hording", hordingSchema);

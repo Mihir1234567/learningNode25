@@ -4,5 +4,10 @@ routes.post("/addHording", hordingController.addHordings);
 routes.get("/", hordingController.getHordings);
 routes.get("/:id", hordingController.getHordingsById);
 routes.delete("/deleteHording/:id", hordingController.deleteHordingsById);
+routes.get(
+  "/getHordingsByUserId/:userId",
+  hordingController.getHordingsByUserId
+);
+routes.put("/updateHoarding/:id", hordingController.updateHordingsByUserId);
 routes.post("/addWithFile", hordingController.addHordingWithFile);
 module.exports = routes;
