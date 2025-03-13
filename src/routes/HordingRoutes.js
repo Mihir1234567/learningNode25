@@ -8,6 +8,6 @@ routes.get(
   "/getHordingsByUserId/:userId",
   hordingController.getHordingsByUserId
 );
-routes.put("/updateHoarding/:id", hordingController.updateHordingsByUserId);
+routes.put("/updateHoarding/:id", hordingController.updateHordingsById);
 routes.post("/addWithFile", hordingController.addHordingWithFile);
 module.exports = routes;

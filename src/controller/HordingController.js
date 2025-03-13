@@ -137,9 +137,9 @@ const getHordingsByUserId = async (req, res) => {
 };
 
 /* --------------------------- UpdateHoardingById --------------------------- */
-const updateHordingsByUserId = async (req, res) => {
+const updateHordingsById = async (req, res) => {
   try {
-    const updateHordingByUserId = await hordingModel.findByIdAndUpdate(
+    const updateHordingById = await hordingModel.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -147,7 +147,7 @@ const updateHordingsByUserId = async (req, res) => {
 
     res.status(200).json({
       message: "Hording Updated Successfully",
-      data: updateHordingByUserId,
+      data: updateHordingById,
     });
   } catch (error) {
     res.status(500).json({ message: "Not Working", error: error.message });
@@ -160,6 +160,6 @@ module.exports = {
   getHordingsById,
   deleteHordingsById,
   addHordingWithFile,
-  updateHordingsByUserId,
+  updateHordingsById,
   getHordingsByUserId,
 };
