@@ -19,11 +19,11 @@ const bookingSchema = new Schema({
   },
   Total_Cost: {
     type: Number,
-    require: true,
+    // require: true,
   },
   Payment_Status: {
     type: Boolean,
-    require: true,
+    // require: true,
   },
 
   AddContent: {
