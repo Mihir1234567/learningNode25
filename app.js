@@ -45,5 +45,5 @@ mongoose.connect("mongodb://127.0.0.1:27017/25_node_internship").then(() => {
 //Server Creation
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log("The server has started");
+  console.log(`The server has started at post no ${PORT}`);
 });
