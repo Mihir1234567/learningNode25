@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 //express object
 const app = express();
+
 app.use(cors());
 /* ------------------------ //To Accept Data as Json ------------------------ */
 app.use(express.json());
@@ -38,6 +39,9 @@ app.use("/booking", bookingRoutes);
 // /* -------------------------- import payment routes ------------------------- */
 const paymentRoutes = require("./src/routes/PaymentRoutes");
 app.use("/payment", paymentRoutes);
+
+/* ----------------------- import Advertisement routes ---------------------- */
+app.use("/ad", require("./src/routes/AdvretisementRoutes"));
 
 mongoose.connect("mongodb://127.0.0.1:27017/25_node_internship").then(() => {
   console.log("database connected....");

@@ -9,14 +9,6 @@ const bookingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "hording",
   },
-  Start_Time: {
-    type: String,
-    require: true,
-  },
-  End_Time: {
-    type: String,
-    require: true,
-  },
   Total_Cost: {
     type: Number,
     // require: true,
@@ -25,15 +17,10 @@ const bookingSchema = new Schema({
     type: Boolean,
     // require: true,
   },
-
-  AddContent: {
-    type: String,
-    require: true,
-  },
-
-  addBannerUrl: {
-    type: String,
+  AdId: {
+    type: Schema.Types.ObjectId,
     // require: true,
+    ref: "advertisement",
   },
 });
 

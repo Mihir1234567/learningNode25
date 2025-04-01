@@ -51,7 +51,7 @@ const getBookingsById = async (req, res) => {
   try {
     const getBookingById = await bookingModel
       .findById(req.params.id)
-      .populate("Clint_Id Hoarding_Id");
+      .populate("Clint_Id AdId  Hoarding_Id");
     res.status(200).json({
       message: "Booking Fetched Successfully",
       data: getBookingById,
@@ -106,9 +106,11 @@ const addBookingWithFile = async (req, res) => {
 /* --------------------------- GetBookingByUserId --------------------------- */
 const getBookingByUserId = async (req, res) => {
   try {
-    const getBookingByUserId = await bookingModel.find({
-      Clint_Id: req.params.id,
-    });
+    const getBookingByUserId = await bookingModel
+      .find({
+        Clint_Id: req.params.id,
+      })
+      .populate("AdId Hoarding_Id");
     res.status(200).json({
       message: "Booking Fetched Successfully",
       data: getBookingByUserId,

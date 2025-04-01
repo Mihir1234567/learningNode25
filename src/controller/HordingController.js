@@ -154,6 +154,24 @@ const updateHordingsById = async (req, res) => {
   }
 };
 
+/* ------------------------ ChangeAvailabilityStatus ------------------------ */
+const UpdateHordingForBooking = async (req, res) => {
+  try {
+    const updatedBooking = await hordingModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.status(200).json({
+      message: "Hoarding Booked",
+      data: updatedBooking,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
 module.exports = {
   addHordings,
   getHordings,
@@ -162,4 +180,5 @@ module.exports = {
   addHordingWithFile,
   updateHordingsById,
   getHordingsByUserId,
+  UpdateHordingForBooking,
 };

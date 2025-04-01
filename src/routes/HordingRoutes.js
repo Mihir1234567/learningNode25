@@ -10,4 +10,9 @@ routes.get(
 );
 routes.put("/updateHoarding/:id", hordingController.updateHordingsById);
 routes.post("/addWithFile", hordingController.addHordingWithFile);
+routes.put(
+  "/updateHoardingForBooking/:id",
+  hordingController.UpdateHordingForBooking
+);
+
 module.exports = routes;
