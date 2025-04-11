@@ -1,4 +1,77 @@
 const paymentModel = require("../model/PaymentModel");
+const Razorpay = require("razorpay");
+const crypto = require("crypto");
+const { error } = require("console");
+require("dotenv").config();
+
+const razorpayInstance = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+/* ------------------------------- CreateOrder ------------------------------ */
+const createOrder = async (req, res) => {
+  try {
+    const { amount, receipt } = req.body;
+    const options = {
+      amount: amount,
+      currency: "INR",
+      receipt: receipt,
+    };
+
+    const order = await razorpayInstance.orders.create(options);
+
+    if (!order) {
+      return res.status(500).json({
+        error: "Order Creation Failed",
+      });
+    }
+
+    return res.status(200).json({
+      data: order,
+    });
+  } catch (error) {
+    console.error("Error Creating Order", error.message);
+  }
+};
+
+/* ------------------------------ verifyPayment ----------------------------- */
+const verifyPayment = async (req, res) => {
+  try {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+      req.body;
+    console.log(req.body);
+
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required Razorpay payment details",
+      });
+    }
+
+    const hmac = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET);
+    hmac.update(razorpay_order_id + "|" + razorpay_payment_id);
+    const generatedSignature = hmac.digest("hex");
+
+    if (generatedSignature === razorpay_signature) {
+      return res.status(200).json({
+        success: true,
+        message: "Payment verified successfully",
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid signature. Payment verification failed.",
+      });
+    }
+  } catch (error) {
+    console.error("Error verifying payment:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Server error during payment verification",
+      error: error.message,
+    });
+  }
+};
 
 /* ------------------------------- AddPayment ------------------------------- */
 const addPayments = async (req, res) => {
@@ -61,4 +134,6 @@ module.exports = {
   getPayments,
   getPaymentsById,
   deletePaymentsById,
+  verifyPayment,
+  createOrder,
 };

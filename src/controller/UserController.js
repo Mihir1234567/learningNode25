@@ -126,7 +126,7 @@ const forgotPassword = async (req, res) => {
 const resetPassword = async (req, res) => {
   try {
     const token = req.body.token;
-    const newPassword = req.body.password;
+    const newPassword = req.body.newPassword;
 
     // Check if token and newPassword are provided
     if (!token || !newPassword) {

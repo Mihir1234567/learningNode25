@@ -5,6 +5,8 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
 /* ------------------------ //To Accept Data as Json ------------------------ */
 app.use(express.json());
 
