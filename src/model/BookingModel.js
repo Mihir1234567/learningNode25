@@ -11,15 +11,28 @@ const bookingSchema = new Schema({
   },
   Total_Cost: {
     type: Number,
-    // require: true,
+    require: true,
   },
+  startDate: {
+    type: String,
+    require: true,
+  },
+  endDate: {
+    type: String,
+    require: true,
+  },
+  totalHours: {
+    type: Number,
+    require: true,
+  },
+
   Payment_Status: {
     type: Boolean,
-    // require: true,
+    require: true,
   },
   AdId: {
     type: Schema.Types.ObjectId,
-    // require: true,
+    require: true,
     ref: "advertisement",
   },
 });

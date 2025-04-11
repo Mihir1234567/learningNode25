@@ -13,18 +13,10 @@ const AdvertisementSchema = new Schema({
     require: true,
   },
 
-  startDate: {
-    type: String,
-    require: true,
-  },
-  endDate: {
-    type: String,
-    require: true,
-  },
   AdURL: {
     type: String,
   },
-  AdTitle: {
+  AdContent: {
     type: String,
     require: true,
   },
