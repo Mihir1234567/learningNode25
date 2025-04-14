@@ -16,16 +16,11 @@ const paymentSchema = new Schema({
     type: Number,
     require: true,
   },
-  Payment_Method: {
-    enum: ["Cash", "Check", "Card", "Upi"],
+  razorpay_order_id: {
     type: String,
     require: true,
   },
-  Payment_Status: {
-    type: Boolean,
-    require: true,
-  },
-  transcationRef: {
+  razorpay_payment_id: {
     type: String,
     require: true,
   },

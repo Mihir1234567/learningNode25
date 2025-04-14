@@ -13,11 +13,7 @@ const signUp = async (req, res) => {
 
     req.body.password = hashedPassword;
     const addedUser = await userModel.create(req.body);
-    await mailUtil.sendMail(
-      addedUser.email,
-      "Welcome To eAdvertisement",
-      "Again Welcome To eAdvertisement By Mihir "
-    );
+    await mailUtil.sendMail(addedUser.email, "Welcome To eAdvertisement");
     res.status(201).json({
       message: "New User Has Been Added",
       data: addedUser,
@@ -79,9 +75,7 @@ const addUser = async (req, res) => {
 
 /* --------------------------------- GetUser -------------------------------- */
 const getUsers = async (req, res) => {
-  const users = await userModel
-    .find()
-    .populate({ path: "roleId", select: "name -_id" });
+  const users = await userModel.find().populate({ path: "roleId" });
   res.json({
     message: "Users Fetched Successfully",
     data: users,
